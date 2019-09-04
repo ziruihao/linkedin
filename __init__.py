@@ -16,6 +16,8 @@ import selenium
 # from dotenv import load_dotenv
 # load_dotenv()
 
+devMode = bool(str(sys.argv[1]) == 'dev')
+
 name = 'linkedin'
 
 rootDir = os.path.realpath('.')
@@ -33,7 +35,14 @@ rolesNeedLevels = ['strategy', 'lending', 'operations', 'technology', 'wealth', 
 rolesNoLevels = ['innovation']
 
 #init driver
-driver = webdriver.Chrome(os.path.join(rootDir, 'chromedriver'))
+print(rootDir)
+print(os.path.join(rootDir, '/bin/chrome/chromedriver'))
+if (devMode):
+        driver = webdriver.Chrome(os.path.join(rootDir, './bin/chrome/chromedriver'))
+        # driver = webdriver.Chrome(rootDir + '/bin/chrome/chromedriver')
+
+else:
+        driver = webdriver.Chrome(os.path.join(rootDir, 'chromedriver'))
 
 driver.set_window_size(1440, 700)
 
